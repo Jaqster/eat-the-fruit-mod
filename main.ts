@@ -34,6 +34,7 @@ controller.moveSprite(mySprite)
 mySprite.setStayInScreen(true)
 info.setScore(0)
 info.startCountdown(10)
+info.setLife(3)
 game.onUpdateInterval(1000, function () {
     projectile2 = sprites.createProjectileFromSide(img`
         . . . . . . . . . . b b b . . . 
