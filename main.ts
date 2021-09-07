@@ -4,13 +4,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
     music.baDing.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeScoreBy(-1)
+    info.changeLifeBy(-1)
     otherSprite.destroy(effects.fire, 200)
     music.powerDown.play()
 })
-let projectile: Sprite = null
-let projectile2: Sprite = null
-game.splash("This is my game")
+let cherries: Sprite = null
+let cake: Sprite = null
+game.splash("Collect cherries, avoid cake!")
 scene.setBackgroundColor(13)
 let mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
@@ -36,7 +36,7 @@ info.setScore(0)
 info.startCountdown(10)
 info.setLife(3)
 game.onUpdateInterval(1000, function () {
-    projectile2 = sprites.createProjectileFromSide(img`
+    cake = sprites.createProjectileFromSide(img`
         . . . . . . . . . . b b b . . . 
         . . . . . . . . b e e 3 3 b . . 
         . . . . . . b b e 3 2 e 3 a . . 
@@ -54,11 +54,11 @@ game.onUpdateInterval(1000, function () {
         . . . . . . b b b b 3 d d d b a 
         . . . . . . . . . . b b b a a . 
         `, -50, 0)
-    projectile2.setPosition(scene.screenWidth(), randint(0, scene.screenHeight()))
-    projectile2.setKind(SpriteKind.Enemy)
+    cake.setPosition(scene.screenWidth(), randint(0, scene.screenHeight()))
+    cake.setKind(SpriteKind.Enemy)
 })
 game.onUpdateInterval(500, function () {
-    projectile = sprites.createProjectileFromSide(img`
+    cherries = sprites.createProjectileFromSide(img`
         . . . . . . . . . . . 6 6 6 6 6 
         . . . . . . . . . 6 6 7 7 7 7 8 
         . . . . . . 8 8 8 7 7 8 8 6 8 8 
@@ -76,5 +76,5 @@ game.onUpdateInterval(500, function () {
         . . . . . . . . c e 2 2 2 2 c . 
         . . . . . . . . . c c c c c . . 
         `, 50, 0)
-    projectile.setPosition(0, randint(0, scene.screenHeight()))
+    cherries.setPosition(0, randint(0, scene.screenHeight()))
 })
